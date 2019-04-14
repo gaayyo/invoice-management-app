@@ -1,12 +1,26 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <Header></Header>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import Header from './views/Header'
+
+export default {
+  name: 'header',
+  props: [
+    'isSelected'
+  ],
+  components: {
+    Header
+  }
+}
+</script>
+
 
 <style lang="scss">
 #app {

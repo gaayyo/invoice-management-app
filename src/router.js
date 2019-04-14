@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import EditInvoice from './views/EditInvoice.vue'
+import ViewInvoice from './views/ViewInvoice.vue'
 
 Vue.use(Router)
 
@@ -14,12 +16,14 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/view/:id',
+      name: 'view',
+      component: ViewInvoice
+    },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: EditInvoice
     }
   ]
 })
