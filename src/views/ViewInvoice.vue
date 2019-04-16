@@ -79,40 +79,40 @@
 </template>
 
 <script>
-import invoices from "@/data/invoice-list.js";
-import Printd from "printd";
+import invoices from '@/data/invoice-list.js'
+import Printd from 'printd'
 export default {
-  props: ["isSelected"],
-  data() {
+  props: ['isSelected'],
+  data () {
     return {
       invoices,
       totalAmount: 0,
       formData: invoices[this.$route.params.id]
-    };
+    }
   },
-  mounted() {
-    this.d = new Printd();
-    this.calculateTotal();
+  mounted () {
+    this.d = new Printd()
+    this.calculateTotal()
   },
   methods: {
-    printReport() {
-      this.d.print(document.getElementById("invoice"));
+    printReport () {
+      this.d.print(document.getElementById('invoice'))
     },
-    calculateTotal() {
+    calculateTotal () {
       for (var i = 0; i < this.formData.items.length; i++) {
         this.totalAmount =
           this.totalAmount +
-          this.formData.items[i].quantity * this.formData.items[i].itemprice;
+          this.formData.items[i].quantity * this.formData.items[i].itemprice
       }
     },
-    editInvoice() {
+    editInvoice () {
       this.$router.push({
-        name: "edit",
+        name: 'edit',
         params: { id: this.$route.params.id }
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -120,6 +120,3 @@ export default {
   margin: 0 5px;
 }
 </style>
-
-
-

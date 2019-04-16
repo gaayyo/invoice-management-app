@@ -85,44 +85,43 @@
 </template>
 
 <script>
-import invoices from "@/data/invoice-list.js";
+import invoices from '@/data/invoice-list.js'
 
 export default {
-  data() {
+  data () {
     return {
       invoices,
       formData: {},
       invoiceDate: ''
-    };
+    }
   },
-  mounted() {
-    this.formData =  JSON.parse(JSON.stringify(this.invoices[this.$route.params.id]));
-    //this.invoiceDate = new Date(this.formData.invoiceDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2-$1-$3"));
-    console.log(this.formData.invoiceDate);
+  mounted () {
+    this.formData = JSON.parse(JSON.stringify(this.invoices[this.$route.params.id]))
+    // this.invoiceDate = new Date(this.formData.invoiceDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2-$1-$3"));
+    console.log(this.formData.invoiceDate)
   },
   methods: {
-    addItem() {
+    addItem () {
       this.formData.items.push({
-        'description' : '',
+        'description': '',
         'quantity': 0,
         'itemprice': 0
       })
     },
-    deleteItem(index) {
-      this.formData.items.splice(index, 1);
-      this.invoices.items.splice(index, 1);
+    deleteItem (index) {
+      this.formData.items.splice(index, 1)
+      this.invoices.items.splice(index, 1)
     },
-    submitData() {
-      this.invoices[this.$route.params.id] = JSON.parse(JSON.stringify(this.formData));
+    submitData () {
+      this.invoices[this.$route.params.id] = JSON.parse(JSON.stringify(this.formData))
 
-      this.$router.push({ name: 'view', params: { id: this.$route.params.id}});
+      this.$router.push({ name: 'view', params: { id: this.$route.params.id } })
     }
   },
   filters: {
-    dateFilter(value) {
+    dateFilter (value) {
       return new Date(value)
     }
   }
-};
+}
 </script>
-

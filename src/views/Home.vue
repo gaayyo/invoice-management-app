@@ -24,20 +24,20 @@
 </template>
 
 <script>
-import invoices from "@/data/invoice-list.js";
+import invoices from '@/data/invoice-list.js'
 
 export default {
-  data() {
+  data () {
     return {
       invoices
-    };
+    }
   },
   methods: {
-    showEditModal(index) {
-      this.$router.push({ name: "view", params: { id: index } });
+    showEditModal (index) {
+      this.$router.push({ name: 'view', params: { id: index } })
     }
   }
-};
+}
 </script>
 
 <style scoped>
