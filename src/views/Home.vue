@@ -2,6 +2,7 @@
   <div class="home">
     <div class="container">
       <b-jumbotron>
+        <p>List of Invoices</p>
         <div class="row">
           <div v-for="(invoice, index) in invoices" :key="index">
             <div class="widgetBox mb-2 mr-2 ml-2 mt-2" @click="showEditModal(index)">
