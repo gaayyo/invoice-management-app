@@ -71,8 +71,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in formData.items"
-              :key="index">
+              <tr v-for="(item, index) in formData.items" :key="index">
                 <td>{{ index+1 }}</td>
                 <td>
                   <input
@@ -120,8 +119,8 @@
             <tfoot>
               <th>Total</th>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>CGST 2.5%</td>
+              <td>SGST 2.5%</td>
               <td colspan="1">
                 <b>
                   <span>&#8377;</span>
@@ -179,8 +178,11 @@ export default {
       if (this.formData.items.length !== 0) {
         for (var i = 0; i < this.formData.items.length; i++) {
           this.totalAmount =
-          this.totalAmount +
-          this.formData.items[i].quantity * this.formData.items[i].itemprice
+            this.totalAmount +
+            this.formData.items[i].quantity * this.formData.items[i].itemprice
+        }
+        if (i === this.formData.items.length) {
+          this.totalAmount = this.totalAmount + (this.totalAmount * (5 / 100))
         }
       }
     },

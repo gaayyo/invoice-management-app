@@ -66,8 +66,8 @@
                   <tfoot>
                     <th>Total</th>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>CGST 2.5%</td>
+                    <td>SGST 2.5%</td>
                     <td colspan="3">
                       <b>
                         <span>&#8377;</span>
@@ -112,6 +112,9 @@ export default {
         this.totalAmount =
           this.totalAmount +
           this.formData.items[i].quantity * this.formData.items[i].itemprice
+      }
+      if (i === this.formData.items.length) {
+        this.totalAmount = this.totalAmount + (this.totalAmount * (5 / 100))
       }
     },
     editInvoice () {
