@@ -3,8 +3,7 @@
   <div>
     <div id="invoice">
       <div class="container">
-         <router-link to="/"
-          class="pull-right" style="margin-top: -30px;">&lt; back</router-link>
+        <router-link to="/" class="pull-right" style="margin-top: -30px;">&lt; back</router-link>
         <b-jumbotron>
           <h3 style="text-align: left;">Invoice Details</h3>
           <hr>
@@ -54,8 +53,14 @@
                       <td>{{ index+1 }}</td>
                       <td>{{ item.item }}</td>
                       <td>{{ item.quantity }}</td>
-                      <td>{{ item.itemprice }}</td>
-                      <td>{{ item.quantity * item.itemprice }}</td>
+                      <td>
+                        <span>&#8377;</span>
+                        {{ item.itemprice }}
+                      </td>
+                      <td>
+                        <span>&#8377;</span>
+                        {{ item.quantity * item.itemprice }}
+                      </td>
                     </tr>
                   </tbody>
                   <tfoot>
@@ -63,7 +68,12 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td colspan="3">{{ totalAmount }}</td>
+                    <td colspan="3">
+                      <b>
+                        <span>&#8377;</span>
+                        {{ totalAmount }}
+                      </b>
+                    </td>
                   </tfoot>
                 </table>
               </div>
