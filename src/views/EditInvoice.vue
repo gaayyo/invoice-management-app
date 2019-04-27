@@ -26,7 +26,7 @@
               >
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row" v-if="formData.customer">
             <label class="col-sm-2 col-form-label">Customer Name</label>
             <div class="col-sm-10">
               <input
@@ -37,7 +37,7 @@
               >
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row" v-if="formData.customer">
             <label class="col-sm-2 col-form-label">Customer Address</label>
             <div class="col-sm-10">
               <input
@@ -48,7 +48,7 @@
               >
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group row" v-if="formData.customer">
             <label class="col-sm-2 col-form-label">Customer Contact</label>
             <div class="col-sm-10">
               <input
@@ -130,7 +130,7 @@
               </td>
             </tfoot>
           </table>
-          <div class="form-group row col-sm-2">
+          <div class="form-group row col-sm-2" v-if="formData.items">
             <button
               class="btn btn-success"
               @click.prevent="addItem"
