@@ -92,7 +92,6 @@
 import invoices from '@/data/invoice-list.js'
 import Printd from 'printd'
 export default {
-  props: ['isSelected'],
   data () {
     return {
       invoices,

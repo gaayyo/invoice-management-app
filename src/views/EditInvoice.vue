@@ -3,35 +3,60 @@
     <div class="container">
       <router-link :to="`/view/${route}`" class="pull-right" style="margin-top: -30px;">&lt; back</router-link>
       <b-jumbotron>
-        <form name="editInvoice" role="form" novalidate>
+        <form name="editInvoice">
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Invoice Number</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" v-model="formData.invoiceNumber">
+              <input
+                type="text"
+                class="form-control"
+                name="invoiceNumber"
+                v-model="formData.invoiceNumber"
+              >
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Invoice Date</label>
             <div class="col-sm-10">
-              <input type="date" class="form-control" v-model="formData.invoiceDate">
+              <input
+                type="date"
+                class="form-control"
+                name="invoiceDate"
+                v-model="formData.invoiceDate"
+              >
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Customer Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" v-model="formData.customer.name">
+              <input
+                type="text"
+                class="form-control"
+                name="customerName"
+                v-model="formData.customer.name"
+              >
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Customer Address</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" v-model="formData.customer.address">
+              <input
+                type="text"
+                class="form-control"
+                name="customerAddress"
+                v-model="formData.customer.address"
+              >
             </div>
           </div>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Customer Contact</label>
             <div class="col-sm-10">
-              <input type="number" class="form-control" v-model="formData.customer.contact">
+              <input
+                type="number"
+                class="form-control"
+                name="customerContact"
+                v-model="formData.customer.contact"
+              >
             </div>
           </div>
           <table class="table">
@@ -46,29 +71,36 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in formData.items" :key="index">
+              <tr v-for="(item, index) in formData.items"
+              :key="index">
                 <td>{{ index+1 }}</td>
                 <td>
-                  <input type="text" class="form-control" v-model="item.item">
-                </td>
-                <td>
                   <input
-                    type="number"
+                    type="text"
                     class="form-control"
-                    min="1"
-                    @input="calculateTotal()"
-                    :disabled="!item.item"
-                    v-model="item.quantity"
+                    name="itemName"
+                    v-model="item.item"
+                    required
                   >
                 </td>
                 <td>
                   <input
                     type="number"
-                    :disabled="!item.item"
+                    name="itemQuantity"
                     class="form-control"
-                    min="1"
+                    @input="calculateTotal()"
+                    v-model="item.quantity"
+                    required
+                  >
+                </td>
+                <td>
+                  <input
+                    type="number"
+                    name="itemPrice"
+                    class="form-control"
                     @input="calculateTotal()"
                     v-model="item.itemprice"
+                    required
                   >
                 </td>
                 <td>
@@ -76,11 +108,12 @@
                   {{ item.quantity * item.itemprice }}
                 </td>
                 <td>
-                  <icon
+                  <i
                     class="fa fa-trash"
+                    name="deleteItem"
                     @click.prevent="deleteItem(index)"
                     style="cursor: pointer"
-                  ></icon>
+                  ></i>
                 </td>
               </tr>
             </tbody>
@@ -101,7 +134,7 @@
             <button
               class="btn btn-success"
               @click.prevent="addItem"
-              :disabled="formData.items[formData.items.length - 1].description === ''
+              :disabled="formData.items[formData.items.length - 1].item === ''
           || formData.items[formData.items.length - 1].quantity === 0
           || formData.items[formData.items.length - 1].itemprice === 0"
             >+ Add Item</button>
@@ -142,17 +175,22 @@ export default {
       })
     },
     calculateTotal () {
-      console.log(this.formData)
       this.totalAmount = 0
-      for (var i = 0; i < this.formData.items.length; i++) {
-        this.totalAmount =
+      if (this.formData.items.length !== 0) {
+        for (var i = 0; i < this.formData.items.length; i++) {
+          this.totalAmount =
           this.totalAmount +
           this.formData.items[i].quantity * this.formData.items[i].itemprice
+        }
       }
     },
     deleteItem (index) {
-      this.formData.items.splice(index, 1)
-      this.invoices.items.splice(index, 1)
+      if (this.formData.items.length === 1) {
+        this.formData.items.splice(index, 1)
+        this.addItem()
+      } else {
+        this.formData.items.splice(index, 1)
+      }
       this.calculateTotal()
     },
     submitData () {

@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
 .widgetBox {
-  width: 300px;
+  width: 340px;
   height: 150px;
   text-align: center;
   background-color: #ffcd6a;

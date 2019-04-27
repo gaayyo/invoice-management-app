@@ -11,7 +11,7 @@
 import Header from './views/Header'
 
 export default {
-  name: 'header',
+  name: 'headerComponent',
   components: {
     Header
   }
